@@ -1,0 +1,26 @@
+extends layout
+block add_movies
+    .col-8
+        form#form(action="/api/movies" method="POST" encType="multipart/form-data")
+            .mb-3
+                label.form-label(for='exampleInputEmail1') Название фильма
+                input#exampleInputEmail1.form-control(type='text' name='name')
+            .mb-3
+                label.form-label(for='exampleInputPassword1') Описание
+                input#exampleInputPassword1.form-control(type='text' name='description')
+            .mb-3
+                label.form-label(for='exampleInputPassword2') Год фильма
+                input#exampleInputPassword2.form-control(type='number' name='year')
+            .mb-3
+                label.form-label(for='exampleInputPassword3') Страна
+                input#exampleInputPassword3.form-control(type='text' name='country')
+            .mb-3
+                label.form-label(for='exampleInputPassword4') IMDb
+                input#exampleInputPassword4.form-control(type='text' pattern="\\d+(\\.\\d{1})?" name='imdb')
+            .mb-3
+                label.form-label(for='exampleInputPassword5') Фото
+                input#exampleInputPassword5.form-control(type='file' name='photo' form="form")
+            .mb-3.form-check
+                input#exampleCheck1.form-check-input(type='checkbox' name='published')
+                label.form-check-label(for='exampleCheck1') Опубликовать
+            button.btn.btn-primary(type='submit') Добавить

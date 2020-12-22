@@ -1,0 +1,26 @@
+{
+  "name": "homework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abway2002/homeworks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abway2002/homeworks/issues"
+  },
+  "homepage": "https://github.com/abway2002/homeworks#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "mongoose": "^5.11.8",
+    "pug": "^3.0.0"
+  }
+}

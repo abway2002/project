@@ -1,0 +1,48 @@
+extends layout
+block view_movie
+    .card.w-100(style="border: none;")
+        .img.d-flex.justify-content-center(style="background: black;")
+            img.card-img-top(src=`/upload/images/${movie_db.photo}` alt=`${movie_db.photo}` style="height: 100%; width: 400px;")
+        .card-body.d-flex.justify-content-between
+            .left
+                h1.card-title= movie_db.name
+                p.card-text= movie_db.description
+                p.card-text
+                    span.badge.bg-dark(style="margin-right: 10px;")= "IMDb: "+movie_db.imdb
+                    small.text-muted= `${movie_db.country}, ${movie_db.year}`
+            .right.d-flex(style="height: 40px;")
+                button.btn.btn-warning#editMov(type='button' style="width: 102px;").d-flex.align-items-center.justify-content-center
+                    svg.bi.bi-clipboard-plus(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16' style="margin-right: 3px;")
+                        path(fill-rule='evenodd' d='M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z')
+                        path(fill-rule='evenodd' d='M9.5 1h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3zM8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z')
+                    | Edit
+                button.btn.btn-danger#deleteMov(type='button' style="margin-left: 10px;").d-flex.align-items-center.justify-content-center
+                    svg.bi.bi-clipboard-x(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16' style="margin-right: 3px;")
+                        path(fill-rule='evenodd' d='M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z')
+                        path(fill-rule='evenodd' d='M9.5 1h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3zm-.354 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708z')
+                    | Remove
+    .form_for_edit.justify-content-center
+        form#form(method="POST" encType="multipart/form-data")
+            .mb-3
+                label.form-label(for='exampleInputEmail1') Название фильма
+                input#exampleInputEmail1.form-control(type='text' name='name' value= movie_db.name)
+            .mb-3
+                label.form-label(for='exampleInputPassword1') Описание
+                input#exampleInputPassword1.form-control(type='text' name='description' value= movie_db.description)
+            .mb-3
+                label.form-label(for='exampleInputPassword2') Год фильма
+                input#exampleInputPassword2.form-control(type='number' name='year' value= movie_db.year)
+            .mb-3
+                label.form-label(for='exampleInputPassword3') Страна
+                input#exampleInputPassword3.form-control(type='text' name='country' value= movie_db.country)
+            .mb-3
+                label.form-label(for='exampleInputPassword4') IMDb
+                input#exampleInputPassword4.form-control(type='text' pattern="\\d+(\\.\\d{1})?" name='imdb' value= movie_db.imdb)
+            .mb-3
+                label.form-label(for='exampleInputPassword5') Фото
+                input#exampleInputPassword5.form-control(type='file' name='photo' form="form")
+            .mb-3.form-check
+                input#exampleCheck1.form-check-input(type='checkbox' name="published" checked=movie_db.published)
+                label.form-check-label(for='exampleCheck1') Опубликовать
+            button.btn.btn-primary(type='submit') Добавить
+    script(src="/script/restapi.js")

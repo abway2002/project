@@ -1,0 +1,15 @@
+extends layout
+block movies
+  each db in dbMovies
+    .col-3
+      .card
+        a(href=`/api/movies/${db.id}`)
+          img.card-img-top(src= `/upload/images/${db.photo}` alt=db.photo)
+        .card-body
+          h5.card-title= db.name
+          p.card-text= db.description
+          p.card-text.d-flex.justify-content-between
+            span
+              span.badge.bg-dark(style="margin-right: 10px;")= "IMDb: "+db.imdb
+              small.text-muted= `${db.country}, ${db.year}`
+            a.btn.btn-dark(href=`/api/movies/${db.id}`) Смотреть
